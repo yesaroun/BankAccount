@@ -13,7 +13,24 @@ public class BankDriver {
         p1.account = a1;
         a1.owner = p1;
 
-        System.out.println(p1.account.balance);
-        System.out.println(a1.owner.name);
+        Person p2 = new Person();
+        p2.name = "이땡땡";
+        p2.age = 26;
+        p2.cashAmount = 100000;
+
+        BankAccount a2 = new BankAccount();
+        a2.balance = 500000;
+
+        p2.account = a2;
+        a2.owner = p2;
+
+
+        System.out.println(a2.deposit(30000));
+        System.out.println(a2.withdraw(170000));
+        System.out.println(a2.deposit(620000));
+        System.out.println(a2.withdraw(890000));
+
+//        System.out.println(p1.account.balance);
+//        System.out.println(a1.owner.name);
     }
 }
