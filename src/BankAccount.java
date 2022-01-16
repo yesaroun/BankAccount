@@ -3,21 +3,38 @@
  */
 
 public class BankAccount {
-    int balance;
-    Person owner;
+    private int balance;
+    private Person owner;
+
+    public void setBalance(int newBalance){
+        if(newBalance >= 0){
+            balance = newBalance;
+        }
+    }
+
+    public int getBalance(){ return balance;}
+
+    public Person getOwner(){
+        return owner;
+    }
+
+    public void setOwner(Person pOwner){
+        owner = pOwner;
+    }
 
     // 파라미터 : 입금할 액수 (정수)
     // 리턴 : 성공여부 (불린)
 
-    boolean deposit(int account) {
-        if(account >= 0 && owner.cashAmount > account) {
-            balance += account;
-            owner.cashAmount -= account;
+    boolean deposit(int amount) {
+        if(amount >= 0 && owner.getCashAmount() > amount) {
+            balance += amount;
+            owner.setCashAmount(owner.getCashAmount() - amount);
 
-            System.out.printf("%d원 입금하였습니다. 잔고: %d원, 현금: %d원%n", account, balance, owner.cashAmount);
+            System.out.printf("%d원 입금하였습니다. 잔고: %d원, 현금: %d원%n", amount, balance, owner.getCashAmount());
             return true;
+
         } else {
-            System.out.printf("입금 실패입니다. 잔고: %d원, 현금: %d원%n", balance, owner.cashAmount);
+            System.out.printf("입금 실패입니다. 잔고: %d원, 현금: %d원%n", balance, owner.getCashAmount());
             return false;
         }
     }
@@ -28,13 +45,13 @@ public class BankAccount {
     boolean withdraw(int amount) {
         if (amount >= 0 && balance > amount) {
             balance -= amount;
-            owner.cashAmount += amount;
+            owner.setCashAmount(owner.getCashAmount() + amount);
 
-            System.out.printf("%d원 출금하였습니다. 잔고: %d원, 현금: %d원%n", amount, balance, owner.cashAmount);
+            System.out.printf("%d원 출금하였습니다. 잔고: %d원, 현금: %d원%n", amount, balance, owner.getCashAmount());
             return true;
         }
         else {
-            System.out.printf("출금 실패입니다. 잔고: %d, 현금: %d원%n", balance, owner.cashAmount);
+            System.out.printf("출금 실패입니다. 잔고: %d, 현금: %d원%n", balance, owner.getCashAmount());
             return false;
         }
     }
