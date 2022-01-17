@@ -31,5 +31,10 @@ public class BankDriver {
         a2.withdraw(170000);
         a2.deposit(620000);
         a2.withdraw(890000);
+
+        a2.transfer(a1, 200000);
+        a1.transfer(p2, 150000);
+        p2.transfer(a1, 270000);
+        p1.transfer(p2, 130000);
     }
 }

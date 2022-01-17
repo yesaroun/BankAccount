@@ -47,4 +47,12 @@ public class Person {
         account = pAccount;
     }
 
+    public boolean transfer(Person to, int amount){
+        return account.transfer(to.getAccount(), amount);
+    }
+
+    public boolean transfer(BankAccount to, int amount){
+        return account.transfer(to, amount);
+    }
+
 }

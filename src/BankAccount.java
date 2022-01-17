@@ -25,7 +25,7 @@ public class BankAccount {
     // 파라미터 : 입금할 액수 (정수)
     // 리턴 : 성공여부 (불린)
 
-    boolean deposit(int amount) {
+    public boolean deposit(int amount) {
         if(amount >= 0 && owner.getCashAmount() > amount) {
             balance += amount;
             owner.setCashAmount(owner.getCashAmount() - amount);
@@ -39,10 +39,15 @@ public class BankAccount {
         }
     }
 
+    public boolean deposit(double amount, double exchageRate){
+        return deposit((int) (amount * exchageRate));
+    }
+
+
     //파라미터 : 출금할 액수 (정수)
     // 리턴 : 성공 여부(불린)
 
-    boolean withdraw(int amount) {
+    public boolean withdraw(int amount) {
         if (amount >= 0 && balance > amount) {
             balance -= amount;
             owner.setCashAmount(owner.getCashAmount() + amount);
@@ -59,8 +64,25 @@ public class BankAccount {
     // 첫 번째 파라미터 : 받는 사람 (Person)
     // 두 번째 파라미터 : 이체할 금액(정수)
     // 리턴 : 성공여부(불린)
+    public boolean transfer(BankAccount to, int amount){
+        boolean success;
 
-//    boolean transfer(Person to, int amount) {
-//
-//    }
+        if(amount < 0 || balance < amount){
+            success = false;
+
+        } else{
+            balance -= amount;
+            to.balance += amount;
+            success = true;
+        }
+
+        System.out.printf("true - from: %s, to: %s, amount: %d, balance: %d\n", owner.getName(), to.owner.getName(), amount, balance);
+
+        return success;
+    }
+
+    public boolean transfer(Person to, int amount){
+        return transfer(to.getAccount(), amount);
+    }
 }
+
