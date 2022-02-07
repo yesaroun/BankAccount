@@ -7,6 +7,24 @@ public class Person {
     private int cashAmount;
     private BankAccount account;
 
+    public Person(String pName, int pAge, int pCashAbount){
+        name = pName;
+        if(pAge < 0){
+            age = 12;
+        } else
+            age = pAge;
+        cashAmount = pCashAbount;
+    }
+
+    public Person(String pName, int pAge){
+        name = pName;
+        if(pAge < 0){
+            age = 12;
+        } else
+            age = pAge;
+        cashAmount = 0;
+    }
+
     // 나이
     public void setAge(int newAge){
         if(newAge >= 0){

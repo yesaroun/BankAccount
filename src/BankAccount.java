@@ -6,6 +6,28 @@ public class BankAccount {
     private int balance;
     private Person owner;
 
+    public BankAccount(int pBalnace){
+        if(pBalnace < 0){
+            balance = 0;
+        } else{
+            balance = pBalnace;
+        }
+    }
+
+    public BankAccount(Person pOwner){
+        owner = pOwner;
+        balance = 0;
+    }
+
+    public BankAccount(int pBalance, Person pOwner){
+        if(pBalance < 0){
+            balance = 0;
+        } else {
+            balance = pBalance;
+        }
+        owner = pOwner;
+    }
+
     public void setBalance(int newBalance){
         if(newBalance >= 0){
             balance = newBalance;
