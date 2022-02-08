@@ -46,7 +46,8 @@ class GradeVO
     //   default 생성자가 자동으로 삽입되지 않을 것을 우려하여
     //   추가로 정의한 생성자
     GradeVO()
-    {}
+    {
+    }
 
     // getter / setter 구성
     public String getHak()
@@ -103,6 +104,7 @@ class GradeVO
     }
 }
 
+
 // 제네릭 표현식 공부한거 참고하기(찾아보기)  Test156
 class MyComparator<T> implements Comparator<T>
 {
@@ -114,7 +116,26 @@ class MyComparator<T> implements Comparator<T>
         GradeVO s2 = (GradeVO)o2;
 
         // 학번 기준(오름차순)
-        return Integer.parseInt(s1.getHak()) - Integer.parseInt(s2.getHak());       // 앞이 더 작다는거를 확인할 정도로 넘겨줬다
+        //return Integer.parseInt(s1.getHak()) - Integer.parseInt(s2.getHak());       // 앞이 더 작다는거를 확인할 정도로 넘겨줬다
+        //return Integer.parseInt("2201123") - Integer.parseInt("2201124");
+        //return 2201123 - 2201124;
+        //return -1
+
+        // 학번 기준(내림차순)
+        //return Integer.parseInt(s2.getHak()) - Integer.parseInt(s1.getHak());
+
+        // 총점 기준(오름차순)
+        //return s1.getTot() - s2.getTot();
+
+        // 총점 기준(내림차순)
+        //return s2.getTot() - s1.getTot();
+
+        // 이름 기준(오름차순)
+        // return 정수형;                  // java.lang String 에 있음
+        //return s1.getName().compareTo(s2.getName());
+
+        // 이름 기준(내림차순)
+        return s2.getName().compareTo(s1.getName());
     }
 }
 
@@ -146,7 +167,9 @@ public class Test171 {
             System.out.print(it.next() + " ");
         }
         System.out.println();
-        //--==>> 스파이더맨 슬램덩크 심슨 알라딘 어드벤쳐타임 원피스 짱구는못말려요 코코 토이스토리 포캣몬스터 하울의움직이는성 하이큐
+        //--==>> 스파이더맨 슬램덩크 심슨 알라딘 어드벤쳐타임 원피스 짱구는못말려요 코코 토이스토리 포캣몬스터 하울의움직이는성 하이큐       // 문자는 내부적으로 가나다 순 정렬된다
+
+        // (하지만 우리는 객체를 담아서 쓸 생각을 해야한다)
 
         // TreeSet 자료구조 인스턴스 생성
         //TreeSet<GradeVO> set2 = new TreeSet<GradeVO>();
@@ -159,19 +182,78 @@ public class Test171 {
         set2.add(new GradeVO("2201135", "김상기", 99, 82, 72));
 
         // Iterator 를 활용한 set 요소 전체 출력
+        /*
         Iterator<GradeVO> it2 = set2.iterator();
         while (it2.hasNext())
         {
             System.out.print(it2.next() + " ");
         }
         System.out.println();
-        
-       //--==>> 에러 발생(런타임 에러)
+        */
+        //--==>> 에러 발생(런타임 에러)
         //       Exception in thread "main" java.lang.ClassCastException:
         //       class temp0207.GradeVO cannot be cast to class java.lang.Comparable
+        //(뭐를 가지고 크기 비교를 해야할지 몰라서 발생하는 에러 -> 그래서 데이터 정럴하는 메소드 설계(MyComparator))
+
+        /*
+        Iterator<GradeVO> it2 = set2.iterator();
+        while (it2.hasNext())
+        {
+            System.out.print(it2.next() + " ");
+        }
+        System.out.println();
+        //--==>> temp0207.GradeVO@30f39991 temp0207.GradeVO@452b3a41 temp0207.GradeVO@4a574795 temp0207.GradeVO@f6f4d33 temp0207.GradeVO@23fc625e
+        */
+
+        Iterator<GradeVO> it2 = set2.iterator();
+        while (it2.hasNext())
+        {
+            GradeVO vo = it2.next();
+            System.out.printf("%7s %7s %4d %4d %4d %6d\n", vo.getHak(), vo.getName(), vo.getEng(), vo.getEng(), vo.getMat(), vo.getTot());
+        }
+        System.out.println();
+        //--==>> 학번기준 오름차순
+        // 2201123     김민성   80   80   70    240
+        //2201124     박현지   81   81   71    243
+        //2201125     이윤태   79   79   77    254
+        //2201135     김상기   82   82   72    253
+        //2201141     정은정   86   86   76    258
+
+        //--==>> 학번기준 내림차순
+        //2201141     정은정   86   86   76    258
+        //2201135     김상기   82   82   72    253
+        //2201125     이윤태   79   79   77    254
+        //2201124     박현지   81   81   71    243
+        //2201123     김민성   80   80   70    240
+
+        //--==>> 총점기준 오름차순
+        //2201123     김민성   80   80   70    240
+        //2201124     박현지   81   81   71    243
+        //2201135     김상기   82   82   72    253
+        //2201125     이윤태   79   79   77    254
+        //2201141     정은정   86   86   76    258
 
 
+        //--==>> 총점기준 내림차순
+        //2201141     정은정   86   86   76    258
+        //2201125     이윤태   79   79   77    254
+        //2201135     김상기   82   82   72    253
+        //2201124     박현지   81   81   71    243
+        //2201123     김민성   80   80   70    240
 
+        //--==>> 이름 기분 오름차순
+        //2201123     김민성   80   80   70    240
+        //2201135     김상기   82   82   72    253
+        //2201124     박현지   81   81   71    243
+        //2201125     이윤태   79   79   77    254
+        //2201141     정은정   86   86   76    258
+
+        //--==>> 이름 기준 내림차순
+        //2201141     정은정   86   86   76    258
+        //2201125     이윤태   79   79   77    254
+        //2201124     박현지   81   81   71    243
+        //2201135     김상기   82   82   72    253
+        //2201123     김민성   80   80   70    240
 
     }
 }
