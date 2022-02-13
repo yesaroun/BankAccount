@@ -7,22 +7,28 @@ public class Person {
     private int cashAmount;
     private BankAccount account;
 
-    public Person(String pName, int pAge, int pCashAbount){
-        name = pName;
-        if(pAge < 0){
-            age = 12;
+    public Person(String name, int age){
+        this.name = name;
+        if(age < 0){
+            this.age = 12;
         } else
-            age = pAge;
-        cashAmount = pCashAbount;
+            this.age = age;
+        cashAmount = 0;
     }
 
-    public Person(String pName, int pAge){
-        name = pName;
-        if(pAge < 0){
-            age = 12;
+    public Person(String name, int age, int cashAcount){
+        this.name = name;
+        if(age < 0){
+            this.age = 12;
         } else
-            age = pAge;
-        cashAmount = 0;
+            this.age = age;
+
+        if(cashAcount < 0){
+            this.cashAmount = 0;
+        }
+        else {
+            this.cashAmount = cashAcount;
+        }
     }
 
     // 나이
@@ -37,8 +43,8 @@ public class Person {
     }
 
     // 이름
-    public void setName(String newName){
-        name = newName;
+    public void setName(String name){
+        this.name = name;
     }
 
     public String getName(){
@@ -46,9 +52,9 @@ public class Person {
     }
 
     // 현금
-    public void setCashAmount(int newCashAmount){
-        if(newCashAmount >=0){
-            cashAmount = newCashAmount;
+    public void setCashAmount(int cashAmount){
+        if(cashAmount >=0){
+            this.cashAmount = cashAmount;
         }
     }
 
@@ -61,8 +67,8 @@ public class Person {
         return account;
     }
 
-    public void setAccount(BankAccount pAccount){
-        account = pAccount;
+    public void setAccount(BankAccount account){
+        this.account = account;
     }
 
     public boolean transfer(Person to, int amount){

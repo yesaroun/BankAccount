@@ -6,31 +6,31 @@ public class BankAccount {
     private int balance;
     private Person owner;
 
-    public BankAccount(int pBalnace){
-        if(pBalnace < 0){
-            balance = 0;
+    public BankAccount(int balnace){
+        if(balnace < 0){
+            this.balance = 0;
         } else{
-            balance = pBalnace;
+            this.balance = balnace;
         }
     }
 
-    public BankAccount(Person pOwner){
-        owner = pOwner;
-        balance = 0;
+    public BankAccount(Person owner){
+        this.owner = owner;
+        this.balance = 0;
     }
 
-    public BankAccount(int pBalance, Person pOwner){
-        if(pBalance < 0){
-            balance = 0;
+    public BankAccount(int balance, Person owner){
+        if(balance < 0){
+            this.balance = 0;
         } else {
-            balance = pBalance;
+            this.balance = balance;
         }
-        owner = pOwner;
+        this.owner = owner;
     }
 
-    public void setBalance(int newBalance){
-        if(newBalance >= 0){
-            balance = newBalance;
+    public void setBalance(int balance){
+        if(balance >= 0){
+            this.balance = balance;
         }
     }
 
@@ -40,8 +40,8 @@ public class BankAccount {
         return owner;
     }
 
-    public void setOwner(Person pOwner){
-        owner = pOwner;
+    public void setOwner(Person owner){
+        this.owner = owner;
     }
 
     // 파라미터 : 입금할 액수 (정수)
