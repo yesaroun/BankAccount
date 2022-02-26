@@ -1,18 +1,9 @@
 package marketGood;
 
 public class MarketGood {
-    private String name;
-    private int retailPrice;
+    public final String name;
+    public final int retailPrice;
     private int discountRate;
-
-
-    public String getName() {
-        return name;
-    }
-
-    public int getRetailPrice(){
-        return retailPrice;
-    }
 
     public void setDiscountRate(int discountRate){
         this.discountRate = discountRate;
